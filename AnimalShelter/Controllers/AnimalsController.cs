@@ -20,9 +20,26 @@ namespace AnimalShelter.Controllers
 
     // GET api/animals
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Animal>>> Get()
+    public ActionResult<IEnumerable<Animal>> Get(string species, string gender, string name)
     {
-      return await _db.Animals.ToListAsync();
+      var query = _db.Animals.AsQueryable();
+
+      if (species != null)
+      {
+      query = query.Where(entry => entry.Species == species);
+      }
+
+      if (gender != null)
+      {
+      query = query.Where(entry => entry.Gender == gender);
+      }
+
+      if (name != null)
+      {
+      query = query.Where(entry => entry.Name == name);
+      }
+
+      return query.ToList();
     }
 
     // POST api/animals
@@ -38,14 +55,14 @@ namespace AnimalShelter.Controllers
     [HttpGet("{id}")]
     public async Task<ActionResult<Animal>> GetAnimal(int id)
     {
-        var animal = await _db.Animals.FindAsync(id);
+      var animal = await _db.Animals.FindAsync(id);
 
-        if (animal == null)
-        {
-            return NotFound();
-        }
+      if (animal == null)
+      {
+        return NotFound();
+      }
 
-        return animal;
+      return animal;
     }
     // PUT: api/Animals/5
     // note: this is for ENTIRE UPDATED entity, including the animalId
@@ -54,25 +71,25 @@ namespace AnimalShelter.Controllers
     {
       if (id != animal.AnimalId)
       {
-        return BadRequest();
+      return BadRequest();
       }
 
       _db.Entry(animal).State = EntityState.Modified;
 
       try
       {
-        await _db.SaveChangesAsync();
+      await _db.SaveChangesAsync();
       }
       catch (DbUpdateConcurrencyException)
       {
-        if (!AnimalExists(id))
-        {
-          return NotFound();
-        }
-        else
-        {
-          throw;
-        }
+      if (!AnimalExists(id))
+      {
+        return NotFound();
+      }
+      else
+      {
+        throw;
+      }
       }
 
       return NoContent();
@@ -84,7 +101,7 @@ namespace AnimalShelter.Controllers
       var animal = await _db.Animals.FindAsync(id);
       if (animal == null)
       {
-        return NotFound();
+      return NotFound();
       }
 
       _db.Animals.Remove(animal);
