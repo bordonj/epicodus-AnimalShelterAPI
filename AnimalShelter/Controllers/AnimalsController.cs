@@ -48,6 +48,7 @@ namespace AnimalShelter.Controllers
         return animal;
     }
     // PUT: api/Animals/5
+    // note: this is for ENTIRE UPDATED entity, including the animalId
     [HttpPut("{id}")]
     public async Task<IActionResult> Put(int id, Animal animal)
     {
@@ -73,6 +74,21 @@ namespace AnimalShelter.Controllers
           throw;
         }
       }
+
+      return NoContent();
+    }
+    // DELETE: api/Animals/5
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteAnimal(int id)
+    {
+      var animal = await _db.Animals.FindAsync(id);
+      if (animal == null)
+      {
+        return NotFound();
+      }
+
+      _db.Animals.Remove(animal);
+      await _db.SaveChangesAsync();
 
       return NoContent();
     }
