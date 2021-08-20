@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
 using AnimalShelter.Models;
 
 namespace AnimalShelter.Controllers
@@ -20,7 +21,7 @@ namespace AnimalShelter.Controllers
 
     // GET api/animals
     [HttpGet]
-    public ActionResult<IEnumerable<Animal>> Get(string species, string gender, string name)
+    public async Task<ActionResult<PaginationModel>> Get(string species, string gender, string name, int page, int perPage)
     {
       var query = _db.Animals.AsQueryable();
 
@@ -39,7 +40,32 @@ namespace AnimalShelter.Controllers
       query = query.Where(entry => entry.Name == name);
       }
 
-      return query.ToList();
+      List<Animal> animals = await query.ToListAsync();
+      
+      if (perPage == 0) perPage = 3;
+
+      int total = animals.Count;
+      List<Animal> animalPage = new List<Animal>();
+
+      if (page < (total / perPage))
+      {
+        animalPage = animals.GetRange(page * perPage, perPage);
+      }
+
+      if (page == (total / perPage)) 
+      {
+        animalPage = animals.GetRange(page * perPage, total - (page * perPage));
+      }
+
+      return new PaginationModel()
+        {
+          Data = animalPage,
+          Total = total,
+          PerPage = perPage,
+          Page = page,
+          PreviousPage = page == 0 ? "No previous page" : $"/api/animals?page={page - 1}&perPage={perPage}",
+          NextPage = page <= total/perPage ? $"/api/animals?page={page}&perPage={perPage}": $"/api/animals?page={page + 1}&perPage={perPage}"
+        };
     }
 
     // POST api/animals
