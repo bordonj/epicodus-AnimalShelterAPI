@@ -4,12 +4,9 @@
 
 #### By _**Jennifer Bordon**_
 ## Description
-This is a project to practice building an API, using C#, that has CRUD and pagination. The seed data this project begins with has 15 animals available from the animal shelter. 
+This is a project to practice building an API, using C#, that has CRUD and pagination. The API will be for an **Animal Shelter**, so a user can view all its available animals. The seed data this project begins with has 15 animals.
 
 Note: there is no UI to view this in the browser, please use Postman to access CRUD for the API
-
-The API will be for an **Animal Shelter**.
-- this will show all available dogs and cats
 
 ## Technologies Used
 
@@ -48,7 +45,6 @@ Be sure to replace `{database_name}` `{YOUR_USERNAME_NAME}` and `{YOUR_PASSWORD}
 - for `{database_name}`, this refers to the database or schema
   - make sure to replace this input with what you decide to name the schema/database
 - for `{YOUR_USERNAME_NAME}` and `{YOUR_PASSWORD}`, this refers to your username and password for MySQL
-- NOTE: usually the username is `root`
 
 - NOTE: _Do not include the curly brackets in your code snippet of appsettings.json_
 
@@ -65,7 +61,7 @@ Be sure to replace `{database_name}` `{YOUR_USERNAME_NAME}` and `{YOUR_PASSWORD}
 
 ## API Endpoints
 Upon running the command `dotnet run` in the `AnimalShelter` directory, please use Postman to access the different API endpoints
-Note: the keyword in brackets designates the specific `CRUD` functionality per endpoint
+- the keyword in brackets designates the specific `CRUD` functionality per endpoint
 
   - [READ] -- to view ALL animals, send a `GET` request to `/api/animals`
   - [CREATE] -- to create a new animal available at the shelter, send a `POST` request to `/api/animals`
@@ -100,7 +96,7 @@ Note: the keyword in brackets designates the specific `CRUD` functionality per e
 ## Pagination
 Upon sending a general `GET` request to `/api/animals`, the user may opt to use `page` and `perPage` parameters to specify which page the user wants to view, and how many animals per page should be viewed. 
 
-_Note: please note that the first page starts on `0`. The last page, will vary depending on how many animals per page you want to view._
+_please note that the first page starts on `0`. The last page, will vary depending on how many animals per page you want to view._
 
 To use view the API responses using pagination in Postman:
 - select the `Params` tab
