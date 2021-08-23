@@ -93,6 +93,22 @@ Upon running the command `dotnet run` in the `AnimalShelter` directory, please u
 ```
   - [DELETE] -- to delete an animal entry, locate the animal id you want to delete. Then send a `DELETE` request to `/api/animals/{id}`
 
+## Parameters to a Get Request
+You may add parameters to search for an animal with specific queries.
+
+For example, if you wanted the animals returned to be filtered by a certain search criteria (e.g., all cats), you can type in the following url into the API request.
+
+```
+http://localhost:5000/api/animals?species=cat
+```
+You may also input multiple parameters by adding the & prior to the next query you'd like to combine the request with. This will return the one specific animal that matches each of the queries, as long as it exists. See the following code below.
+
+```
+http://localhost:5000/api/animals/?species=rabbit&gender=male&name=ron
+```
+
+
+
 ## Pagination
 Upon sending a general `GET` request to `/api/animals`, the user may opt to use `page` and `perPage` parameters to specify which page the user wants to view, and how many animals per page should be viewed. 
 
