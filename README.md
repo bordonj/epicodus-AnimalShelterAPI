@@ -109,7 +109,9 @@ To use view the API responses using pagination in Postman:
 
 ## Bugs
 
-_For the "nextPage" property shown in the JSON response for an API request, it may not be the most accurate. It should show the next page when even one final entry is on, however, this is not always perfect. This feature has not been tested thoroughly, so if specific cases are found when it does not return a correct next page, please let me know! Thank you._
+_For the "nextPage" property shown in the JSON response for an API request, it may not be the most accurate. It should show the next page when even one final entry is on, however, this is not always perfect. This feature has not been tested thoroughly, so if specific cases are found when it does not return a correct next page, please let me know!_
+
+_Additionally, the "parameters" combined with the pagination will not account for any parameters added. Please keep this in mind when adding any queries to the API requests._
 
 ## License
 
