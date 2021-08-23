@@ -61,10 +61,11 @@ Be sure to replace `{database_name}` `{YOUR_USERNAME_NAME}` and `{YOUR_PASSWORD}
 
 ## API Endpoints
 Upon running the command `dotnet run` in the `AnimalShelter` directory, please use Postman to access the different API endpoints
-- the keyword in brackets designates the specific `CRUD` functionality per endpoint
 
-  - [READ] -- to view ALL animals, send a `GET` request to `/api/animals`
-  - [CREATE] -- to create a new animal available at the shelter, send a `POST` request to `/api/animals`
+the keyword in brackets designates the specific `CRUD` functionality per endpoint
+
+  - **[READ]** -- to view ALL animals, send a `GET` request to `/api/animals`
+  - **[CREATE]** -- to create a new animal available at the shelter, send a `POST` request to `/api/animals`
     - you can insert the code below into the body as raw JSON, to create your animal with the `POST` method
   ```
       {
@@ -76,9 +77,9 @@ Upon running the command `dotnet run` in the `AnimalShelter` directory, please u
         "description": "{insert description}"
       }
   ```
-  - [READ] -- to view a specific animal given an id, send a `GET` request to `/api/animal/{id}`
+  - **[READ]** -- to view a specific animal given an id, send a `GET` request to `/api/animal/{id}`
     - the {id} should be replaced by the specific id of the animal, without the curly brackets
-  - [UPDATE] -- to update/edit a specific animal's information, send a `PUT` request to `/api/animals/{id}`
+  - **[UPDATE]** -- to update/edit a specific animal's information, send a `PUT` request to `/api/animals/{id}`
     - you can insert the code below into the body as raw JSON for editing the information
 ```
       {
@@ -91,7 +92,7 @@ Upon running the command `dotnet run` in the `AnimalShelter` directory, please u
         "description": "{insert description}"
       }
 ```
-  - [DELETE] -- to delete an animal entry, locate the animal id you want to delete. Then send a `DELETE` request to `/api/animals/{id}`
+  - **[DELETE]** -- to delete an animal entry, locate the animal id you want to delete. Then send a `DELETE` request to `/api/animals/{id}`
 
 ## Parameters to a Get Request
 You may add parameters to search for an animal with specific queries.
